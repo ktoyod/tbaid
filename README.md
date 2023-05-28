@@ -35,3 +35,11 @@ OPENAI_API_KEY=sk-xxxxx ./bin/tbaid gentitle --keywords Go,Cobra --number 5 --la
 # 4. "Leveling Up Your Command-Line Tooling with Go and Cobra"
 # 5. "Creating Powerful CLI Applications Using Go and Cobra"
 ```
+
+## Environment variables
+
+You should set the following environment variables to use `tbaid` command.
+
+| env variable | required | description |
+|--|--|--|
+| OPENAI_API_KEY | o | The API Key for OpenAI platform. |
