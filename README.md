@@ -1,6 +1,6 @@
 # tbaid (Tech Blog Aid)
 
-The tbaid is a cli tool used to write tech blog.
+`tbaid` is a command line tool which supports writing tech blogs.
 
 ## Installation
 
@@ -18,9 +18,9 @@ You can use `tbaid` command with
 
 ## Usage
 
-```sh
-make go/install/tbaid
+Generate some candidates for the title of your tech blog.
 
+```sh
 OPENAI_API_KEY=sk-xxxxx ./bin/tbaid gentitle --keywords Go,Cobra
 # Output:
 # 1.「Goで爆速CLI開発！Cobraフレームワークの使い方」
