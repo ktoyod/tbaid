@@ -53,7 +53,7 @@ func NewCmdGentitle() *cobra.Command {
 func (o *GentitleOptions) Run(n int, kw []string, l string) {
 	sysMsg := `
 あなたはアウトプットが得意なソフトウェアエンジニアです。
-他のエンジニアがテックブログを書こうとしているので質問に対して適切なアドバイスを返してください。
+他のエンジニアがテックブログを書こうとしているので質問や依頼に対して適切なアドバイスを返してください。
 `
 	usrMsg := fmt.Sprintf(
 		`
