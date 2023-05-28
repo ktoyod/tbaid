@@ -42,4 +42,4 @@ You should set the following environment variables to use `tbaid` command.
 
 | env variable | required | description |
 |--|--|--|
-| OPENAI_API_KEY | o | The API Key for OpenAI platform. |
+| OPENAI_API_KEY | ✔ | The API Key for OpenAI platform. |
