@@ -2,24 +2,36 @@ package gentitle
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/spf13/cobra"
+
+	"github.com/ktoyod/tbaid/pkg/chatgpt"
 )
 
 type GentitleOptions struct {
+	ChatGPTClient *chatgpt.ChatGPTClient
+
 	Number   int
 	Keywords []string
 }
 
+func NewGentitleOptions() *GentitleOptions {
+	c := chatgpt.NewChatGPTClient()
+
+	return &GentitleOptions{
+		ChatGPTClient: c,
+	}
+}
+
 func NewCmdGentitle() *cobra.Command {
-	o := &GentitleOptions{}
+	o := NewGentitleOptions()
 
 	cmd := &cobra.Command{
 		Use:   "gentitle",
 		Short: "Generate titles for tech blog",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(o.Number)
-			fmt.Println(o.Keywords)
+			o.Run(o.Number, o.Keywords)
 		},
 	}
 
@@ -33,4 +45,25 @@ func NewCmdGentitle() *cobra.Command {
 	)
 
 	return cmd
+}
+
+func (o *GentitleOptions) Run(n int, kw []string) {
+	sysMsg := `
+あなたはアウトプットが得意なソフトウェアエンジニアです。
+他のエンジニアがテックブログを書こうとしているので質問に対して適切なアドバイスを返してください。
+`
+	usrMsg := fmt.Sprintf(
+		`
+テックブログを書いているのですが、簡潔で信頼性があり注目を集めるタイトルを考えてください。関連するキーワードは以下になります。
+
+%s
+
+タイトルの例を%d個挙げてください。
+`,
+		strings.Join(kw, "\n"),
+		n,
+	)
+
+	resp := o.ChatGPTClient.Chat(sysMsg, usrMsg)
+	fmt.Println(resp)
 }
